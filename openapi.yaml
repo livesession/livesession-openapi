@@ -11,18 +11,20 @@ servers:
 paths:
   # BEGIN Sessions
   /sessions:
+    x-fern-sdk-group-name: sessions
+    x-fern-sdk-method-name: list
     get:
       summary: Get Sessions
       security:
         - livesession_oauth: [ users.sessions:read ]
         - api_token: [ users.sessions:read ]
       description: |
-            ---
-            title: List sessions
-            group: [ENDPOINTS]
-            ---
-            
-            List of all sessions
+        ---
+        title: List sessions
+        group: [ENDPOINTS]
+        ---
+        
+        List of all sessions
       tags:
         - Sessions
       parameters:
@@ -91,6 +93,8 @@ paths:
   # BEGIN Alerts
   /alerts:
     get:
+      x-fern-sdk-group-name: alerts
+      x-fern-sdk-method-name: list
       summary: Get all alerts
       security:
         - livesession_oauth: [ alerts:read ]
@@ -125,6 +129,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
+      x-fern-sdk-group-name: alerts
+      x-fern-sdk-method-name: create
       summary: Create an alert
       security:
         - livesession_oauth: [ alerts:write ]
@@ -165,6 +171,8 @@ paths:
 
   /alerts/{id}:
     put:
+      x-fern-sdk-group-name: alerts
+      x-fern-sdk-method-name: update
       summary: Update an alert by ID
       security:
         - livesession_oauth: [ alerts:write ]
@@ -210,6 +218,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
+      x-fern-sdk-group-name: alerts
+      x-fern-sdk-method-name: delete
       summary: Delete an alert by ID
       security:
         - livesession_oauth: [ alerts:write ]
@@ -261,6 +271,8 @@ paths:
   # BEGIN Webhooks
   /webhooks:
     get:
+      x-fern-sdk-group-name: webhooks
+      x-fern-sdk-method-name: list
       summary: Get a list of webhooks
       security:
         - livesession_oauth: [ webhooks:read ]
@@ -295,6 +307,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
+      x-fern-sdk-group-name: webhooks
+      x-fern-sdk-method-name: create
       summary: Create a webhook
       security:
         - livesession_oauth: [ webhooks:write ]
@@ -336,6 +350,8 @@ paths:
 
   /webhooks/{id}:
     put:
+      x-fern-sdk-group-name: webhooks
+      x-fern-sdk-method-name: update
       summary: Update a webhook
       security:
         - livesession_oauth: [ webhooks:write ]
@@ -392,6 +408,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
     delete:
+      x-fern-sdk-group-name: webhooks
+      x-fern-sdk-method-name: delete
       summary: Delete a webhook
       security:
         - livesession_oauth: [ webhooks:write ]
@@ -401,7 +419,7 @@ paths:
         group: [ENDPOINTS]
         ---
         
-        Delete a webhook 
+        Delete a webhook
       tags:
         - Webhooks
       parameters:
@@ -437,6 +455,8 @@ paths:
   # BEGIN Websites
   /websites:
     get:
+      x-fern-sdk-group-name: websites
+      x-fern-sdk-method-name: list
       summary: Get a list of websites
       security:
         - livesession_oauth: [ websites:read ]
@@ -471,6 +491,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
+      x-fern-sdk-group-name: websites
+      x-fern-sdk-method-name: create
       summary: Create a website
       security:
         - livesession_oauth: [ websites:write ]
@@ -524,9 +546,9 @@ components:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: https://apis.livesession.io/accounts/v1/oauth2/authorize 
-          tokenUrl: https://apis.livesession.io/accounts/v1/oauth2/access_token 
-          refreshUrl: https://apis.livesession.io/accounts/v1/oauth2/access_token 
+          authorizationUrl: https://apis.livesession.io/accounts/v1/oauth2/authorize
+          tokenUrl: https://apis.livesession.io/accounts/v1/oauth2/access_token
+          refreshUrl: https://apis.livesession.io/accounts/v1/oauth2/access_token
           scopes:
             users.sessions:read: read user sessions
 
